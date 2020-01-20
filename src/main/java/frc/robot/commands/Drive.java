@@ -11,6 +11,7 @@ public class Drive extends CommandBase {
     public Drive(DriveTrain driveTrain, GenericHID joy){
         this.driveTrain = driveTrain;
         this.joy = joy;
+        this.addRequirements(driveTrain);
     }
 
     @Override

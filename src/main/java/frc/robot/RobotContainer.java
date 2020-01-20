@@ -54,6 +54,7 @@ public class RobotContainer {
   private void createDriveTrainSubsystem(){
     driveTrain = new DriveTrain();
     driveCmd = new Drive(driveTrain,joyStick);
+    driveTrain.setDefaultCommand(driveCmd);
   }
 
 
