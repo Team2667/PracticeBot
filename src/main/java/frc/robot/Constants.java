@@ -17,7 +17,7 @@ package frc.robot;
  */
 public final class Constants {
     public static final int DT_LEFT_PRIMARY = 1;
-    public static final int DT_RIGHT_PRIMARY = 2;
-    public static final int DT_LEFT_FOLLOWER = 3;
+    public static final int DT_RIGHT_PRIMARY = 3;
+    public static final int DT_LEFT_FOLLOWER = 2;
     public static final int DT_RIGHT_FOLLOWER = 4;
 }

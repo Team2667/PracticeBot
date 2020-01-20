@@ -21,6 +21,8 @@ public class DriveTrain extends SubsystemBase {
         rightFollower = new WPI_TalonSRX(Constants.DT_RIGHT_FOLLOWER);
         leftFollower.follow(leftPrimary);
         rightFollower.follow(rightPrimary);
+        rightPrimary.setInverted(true);
+        rightFollower.setInverted(true);
         diffDriveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
     }
 
