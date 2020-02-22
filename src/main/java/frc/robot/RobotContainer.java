@@ -10,8 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive;
+import frc.robot.commands.DriveToDistance;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -23,6 +25,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private GenericHID joyStick;
   private  DriveTrain driveTrain;
+  private DriveToDistance driveToDistance;
 
   private  Drive driveCmd;
 
@@ -47,12 +50,17 @@ public class RobotContainer {
   private void configureButtonBindings() {
     joyStick = new XboxController(0);
     createDriveTrainSubsystem();
+
+
   }
 
   private void createDriveTrainSubsystem(){
     driveTrain = new DriveTrain();
     driveCmd = new Drive(driveTrain,joyStick);
     driveTrain.setDefaultCommand(driveCmd);
+
+    // Create a DriveToDistance command
+    // Add the drive to distance command to a button
   }
 
 

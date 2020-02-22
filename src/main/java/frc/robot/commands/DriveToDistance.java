@@ -14,12 +14,12 @@ public class DriveToDistance extends PIDCommand {
 
         super(new PIDController(p,i,d), 
                 () -> driveTrain.getDSReading(), 
-                ()-> 0.0,  // determine the distance to move to in inches. This could be a 
+                ()-> 50.0,  // determine the distance to move to in inches. This could be a 
                            // parameter to this command 
                 (double d) -> driveTrain.moveForward(d),
                  driveTrain);
         this.dt = driveTrain;
-       
+        // call setTolerance(positionTolerance) to set the acceptable error range
 
         /* 
             PIDCommand(PIDController controller, DoubleSupplier measurementSource,
@@ -34,6 +34,5 @@ public class DriveToDistance extends PIDCommand {
         // if within an exceptable range, return true.
         return false;
     }
-    
-    // implement end(boolean isInterupted)
+
 }
