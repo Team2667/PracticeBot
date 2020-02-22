@@ -1,5 +1,8 @@
 package frc.robot.subsystems;
 
+import java.util.function.DoubleConsumer;
+import java.util.function.DoubleSupplier;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -13,6 +16,8 @@ public class DriveTrain extends SubsystemBase {
     private WPI_TalonSRX rightPrimary;
     private WPI_TalonSRX rightFollower;
     private DifferentialDrive diffDriveTrain;
+    // Add an analog sensor for the distance sensor
+
 
     public DriveTrain(){
         leftPrimary = new WPI_TalonSRX(Constants.DT_LEFT_PRIMARY);
@@ -28,6 +33,15 @@ public class DriveTrain extends SubsystemBase {
 
     public void arcadeDrive(GenericHID jstick){
         diffDriveTrain.arcadeDrive(jstick.getX(), jstick.getY());
+    }
+
+    public double getDSReading(){
+        // return distance in inches based on distance sensor reading.
+        return 0;
+    }
+
+    public void moveForward(double value) {
+        // Use value to set the speed for the drivetrain.
     }
 
     public void stop() {
