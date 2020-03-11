@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.GenericHID;
 import frc.robot.Constants;
+import frc.robot.coprocessor.Lidar;
 
 public class DriveTrain extends SubsystemBase {
     private WPI_TalonSRX leftPrimary;
@@ -20,7 +21,7 @@ public class DriveTrain extends SubsystemBase {
     private WPI_TalonSRX rightPrimary;
     private WPI_TalonSRX rightFollower;
     private DifferentialDrive diffDriveTrain;
-    private AnalogInput distanceSensor;
+    private double PID_Val;
     // Add an analog sensor for the distance sensor
 
 
@@ -34,7 +35,7 @@ public class DriveTrain extends SubsystemBase {
         rightPrimary.setInverted(true);
         rightFollower.setInverted(true);
         diffDriveTrain = new DifferentialDrive(leftPrimary, rightPrimary);
-        this.distanceSensor = new AnalogInput(1);
+        Lidar.initI2c();
     }
 
     public void arcadeDrive(GenericHID jstick){
@@ -44,13 +45,18 @@ public class DriveTrain extends SubsystemBase {
     public double getDSReading(){
         // multiply getValue by 1.02396 returns distance in millimeters
         // devide millimeters by 20.54 returns distance in inches.
-        return (distanceSensor.getValue() * 1.02396) / 20.54;
+        return Lidar.getDistance();
     }
 
     public void moveForward(double value) {
+        PID_Val = value;
+   //     var signNumber = value > 0 ? 1 : -1;
+   //     var absValue = Math.abs(value) > 1 ? 1 : Math.abs(value);
+   //     double speed = (signNumber*absValue);        
         diffDriveTrain.arcadeDrive(0, value);
+        SmartDashboard.putNumber("PID Val", PID_Val);
+    
     }
-
     public void stop() {
         diffDriveTrain.stopMotor();
     }

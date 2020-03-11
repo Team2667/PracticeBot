@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive;
 import frc.robot.commands.DriveToDistance;
@@ -23,10 +24,9 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private GenericHID joyStick;
+  private XboxController joyStick;
   private  DriveTrain driveTrain;
   private DriveToDistance driveToDistance;
-
   private  Drive driveCmd;
 
 
@@ -58,10 +58,14 @@ public class RobotContainer {
     driveTrain = new DriveTrain();
     driveCmd = new Drive(driveTrain,joyStick);
     driveTrain.setDefaultCommand(driveCmd);
+    driveToDistance = new DriveToDistance(driveTrain);
+    JoystickButton x = new JoystickButton(joyStick,XboxController.Button.kX.value);
+    x.whenPressed(driveToDistance);
 
-    // Create a DriveToDistance command
+
     // Add the drive to distance command to a button
-  }
+    
+    }
 
 
   /**
