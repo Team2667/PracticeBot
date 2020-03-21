@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive;
 import frc.robot.commands.DriveToDistance;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.LidarSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -26,6 +27,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private XboxController joyStick;
   private  DriveTrain driveTrain;
+  private LidarSubsystem lidarSubsystem;
   private DriveToDistance driveToDistance;
   private  Drive driveCmd;
 
@@ -49,9 +51,13 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     joyStick = new XboxController(0);
-    createDriveTrainSubsystem();
+    //createDriveTrainSubsystem();
+    createLidarSubsystem();
 
+  }
 
+  private void createLidarSubsystem(){
+    this.lidarSubsystem = new LidarSubsystem();
   }
 
   private void createDriveTrainSubsystem(){
